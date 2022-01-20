@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: #EEEEEE;
+
+  font-family: 'Exo 2', Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding: 20px;
+  margin: 0 auto;
+  width: 80%;
+  background-color: #FFFFFF;
+}
+
+.todo-title {
+  margin-top: 0;
+  border-bottom: 1px solid #CCCCCC;
+  text-transform: uppercase;
+  color: #007474;
+}
+
+.todo-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.todo-table td,
+.todo-table th {
+  border: 1px solid #333333;
+  padding: 8px;
+}
+
+.todo-table th {
+  background-color: #007474;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  border-bottom-width: 4px;
+  border-bottom-color: #004242;
+}
