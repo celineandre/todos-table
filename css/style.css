@@ -19,6 +19,7 @@ body {
   padding: 20px;
   margin: 0 auto;
   width: 80%;
+  max-width: 1280px;
   background-color: #FFFFFF;
 }
 
@@ -34,16 +35,32 @@ body {
   width: 100%;
 }
 
-.todo-table td,
-.todo-table th {
-  border: 1px solid #333333;
+.todo-table--head--title,
+.todo-table--body--content {
+  border: 1px solid #BEBEBE;
   padding: 8px;
 }
 
-.todo-table th {
+.todo-table--head--title {
   background-color: #007474;
   color: #FFFFFF;
   text-transform: uppercase;
   border-bottom-width: 4px;
   border-bottom-color: #004242;
+}
+
+.todo-table--head--title.title__userId {
+  width: 80px;
+}
+
+.todo-table--head--title.title__id {
+  width: 50px;
+}
+
+.todo-table--head--title.title__completed {
+  width: 130px;
+}
+
+.todo-table--body tr:nth-child(odd) {
+  background-color:#EEEEEE;
 }
