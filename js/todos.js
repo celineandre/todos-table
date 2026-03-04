@@ -1,5 +1,12 @@
 // Entêtes du tableau
-const tableHeaders = ['userId', 'id', 'title', 'completed'];
+const tableHeaders = ['id', 'title', 'completed'];
+
+// Mapping clé JSON → nom affiché dans l'en-tête
+const columnNames = {
+  id: 'Priorité',
+  title: 'Tâche',
+  completed: 'Terminé'
+};
 
 // Chargement des données stocker dans le fichiers JSON
 async function loadData() {
@@ -45,7 +52,7 @@ function renderTable(headers, data, containerId, options = {}) {
          const button = document.createElement('button');
          button.type = 'button';
          button.className = 'todo-table--head--button';
-         button.textContent = key;
+         button.textContent = columnNames[key] || key;
          button.dataset.key = key;
 
          button.addEventListener('click', () => {
@@ -54,7 +61,7 @@ function renderTable(headers, data, containerId, options = {}) {
 
          th.appendChild(button);
       } else {
-         th.textContent = key;
+         th.textContent = columnNames[key] || key;
       }
 
       headerRow.appendChild(th);
@@ -150,15 +157,15 @@ function renderTable(headers, data, containerId, options = {}) {
 
          switch (state) {
             case 'ascending':
-               titleText = `${key} - Tri par ordre croissant`;
+               titleText = `${columnNames[key] || key} - Tri par ordre croissant`;
                break;
 
             case 'descending':
-               titleText = `${key} - Tri par ordre descendant`;
+               titleText = `${columnNames[key] || key} - Tri par ordre descendant`;
                break;
 
             default:
-               titleText = `${key}`;
+               titleText = `${columnNames[key] || key}`;
          }
 
          button.setAttribute('title', titleText);
