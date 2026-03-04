@@ -51,6 +51,11 @@ body {
   background-color:#EEEEEE;
 }
 
+
+/**
+ * Trie dynamique des colonnes
+ */
+
 .todo-table--head--button {
   all: unset;
   cursor: pointer;
@@ -72,4 +77,67 @@ th[aria-sort="descending"] .todo-table--head--button::after {
 .todo-table--head--button:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 2px;
+}
+
+
+/**
+ * Pagination
+ */
+
+.todo-table--pagination {
+  display: flex;
+  padding-top: 20px;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.todo-table--pagination button {
+  padding: 6px 8px;
+  border: 1px solid #007474;
+  background-color: #004242;
+  color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.todo-table--pagination button:hover:not(:disabled),
+.todo-table--pagination button:focus-visible:not(:disabled) {
+  background-color: #000000;
+}
+
+.todo-table--pagination button:focus-visible:not(:disabled) {
+  outline: 2px solid #007474;
+  outline-offset: 2px;
+}
+
+.todo-table--pagination button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.todo-table--pagination--info {
+  margin: 0;
+  font-size: 13px;
+  color: #333333;
+}
+
+
+/**
+ * Texte masqué sauf au TA
+ */
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
 }
