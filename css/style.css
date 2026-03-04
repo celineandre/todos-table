@@ -47,18 +47,29 @@ body {
   border-bottom-color: #004242;
 }
 
-.todo-table--head--title.title__userId {
-  width: 80px;
-}
-
-.todo-table--head--title.title__id {
-  width: 50px;
-}
-
-.todo-table--head--title.title__completed {
-  width: 130px;
-}
-
 .todo-table--body tr:nth-child(odd) {
   background-color:#EEEEEE;
+}
+
+.todo-table--head--button {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+}
+
+th[aria-sort="none"] .todo-table--head--button::after {
+  content: " ⮁";
+}
+
+th[aria-sort="ascending"] .todo-table--head--button::after {
+  content: " ⭡";
+}
+
+th[aria-sort="descending"] .todo-table--head--button::after {
+  content: " ⭣";
+}
+
+.todo-table--head--button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
 }
