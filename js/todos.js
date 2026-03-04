@@ -22,6 +22,7 @@ function renderDataInTheTable(dataHeadingTable, dataContentTable, idTable) {
 
    const table = document.createElement("table");
    table.className = 'todo-table';
+   table.setAttribute('aria-labelledby', 'title-table');
    globalTable.appendChild(table);
 
    // TITRE DU TABLEAU
@@ -37,6 +38,7 @@ function renderDataInTheTable(dataHeadingTable, dataContentTable, idTable) {
          let cell = document.createElement("th");
          cell.className = 'todo-table--head--title title__' + value;
          cell.innerText = value;
+         cell.setAttribute('scope', 'col');
          headTr.appendChild(cell);
       })
 
