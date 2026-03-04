@@ -1,66 +1,71 @@
-// Titres du tableau
-let tableHeaders = new Array();
-tableHeaders.push(["userId", "id", "title", "completed"]);
+// Entêtes du tableau
+const tableHeaders = ['userId', 'id', 'title', 'completed'];
 
-// Récupérer les données stocker dans le fichiers JSON
-fetch('data/todos.data.json')
-   .then(function (response) {
-      return response.json();
-   })
-   .then(function (apiJsonData) {
-      // console.log(apiJsonData);
-      renderDataInTheTable(tableHeaders, apiJsonData, "html-todo-table");
-   })
+// Chargement des données stocker dans le fichiers JSON
+async function loadData() {
+   try {
+      const response = await fetch('data/todos.data.json');
+      const data = await response.json();
+      renderTable(tableHeaders, data, 'html-todo-table');
+   } catch (error) {
+      console.error("Erreur lors du chargement des données :", error);
+   }
+}
 
-/**
- * Permet d'ajouter dans le tableau ciblé les données sur de nouvelle lignes
- */
-function renderDataInTheTable(dataHeadingTable, dataContentTable, idTable) {
-   const globalTable = document.getElementById(idTable);
+// Création du tableau
+function renderTable(headers, data, containerId) {
+   const container = document.getElementById(containerId);
+   if (!container) return;
 
-   // TABLEAU
+   // Structure et titre du tableau
 
-   const table = document.createElement("table");
+   const table = document.createElement('table');
    table.className = 'todo-table';
    table.setAttribute('aria-labelledby', 'title-table');
-   globalTable.appendChild(table);
 
-   // TITRE DU TABLEAU
+   // En-tête du tableau
 
-   const headTable = document.createElement("thead");
-   headTable.className = 'todo-table--head';
-   table.appendChild(headTable);
+   const thead = document.createElement('thead');
+   thead.className = 'todo-table--head';
 
-   dataHeadingTable.forEach(todoHead => {
-      let headTr = document.createElement("tr");
+   const headerRow = document.createElement('tr');
 
-      Object.values(todoHead).forEach((value) => {
-         let cell = document.createElement("th");
-         cell.className = 'todo-table--head--title title__' + value;
-         cell.innerText = value;
-         cell.setAttribute('scope', 'col');
-         headTr.appendChild(cell);
-      })
-
-      headTable.appendChild(headTr);
+   headers.forEach(header => {
+      const th = document.createElement('th');
+      th.className = `todo-table--head--title title__${header}`;
+      th.textContent = header;
+      th.scope = 'col';
+      headerRow.appendChild(th);
    });
 
-   // CONTENU DU TABLEAU
+   thead.appendChild(headerRow);
+   table.appendChild(thead);
 
-   const bodyTable = document.createElement("tbody");
-   bodyTable.className = 'todo-table--body';
-   table.appendChild(bodyTable);
+   // Contenu du tableau
 
-   dataContentTable.forEach(todoBody => {
-      let newRow = document.createElement("tr");
+   const tbody = document.createElement('tbody');
+   tbody.className = 'todo-table--body';
 
-      Object.values(todoBody).forEach((value) => {
-         let cell = document.createElement("td");
-         cell.className = 'todo-table--body--content';
-         cell.innerText = value;
-         newRow.appendChild(cell);
-      })
+   // Fragment pour limiter les reflows
+   const fragment = document.createDocumentFragment();
 
-      bodyTable.appendChild(newRow);
+   data.forEach(item => {
+      const tr = document.createElement('tr');
+
+      headers.forEach(key => {
+         const td = document.createElement('td');
+         td.className = 'todo-table--body--content';
+         td.textContent = item[key];
+         tr.appendChild(td);
+      });
+
+      fragment.appendChild(tr);
    });
+
+   tbody.appendChild(fragment);
+   table.appendChild(tbody);
+   container.appendChild(table);
 }
+
+// Lancer le chargement
+loadData();
